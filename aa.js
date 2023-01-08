@@ -41,3 +41,8 @@ var a = 10
 console.log('sdf');
 console.log('sdf');
 console.log('sdf');
+console.log('test');
+var a = 10
+console.log('test');
+console.log('test');
+console.log('test');
