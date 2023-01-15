@@ -6,7 +6,7 @@ footer {
 </style>
 
 <template>
-  <footer class="jumbotron text-center" style="margin-bottom: 0">
+  <footer class="jumbotron text-center">
     <h1>Footer.vue</h1>
   </footer>
 </template>
