@@ -1,196 +1,200 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible"
+      content="IE=edge">
+    <meta name="viewport"
+      content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.12/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu"
+      rel="stylesheet">
 
     <title>05-12</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        body {
-            text-align: center;
-            background-color: #f6f6f8;
-        }
+      body {
+        text-align: center;
+        background-color: #f6f6f8;
+      }
 
-        input {
-            border-style: groove;
-            width: 200px;
-        }
+      input {
+        border-style: groove;
+        width: 200px;
+      }
 
-        button {
-            border-style: groove;
-        }
+      button {
+        border-style: groove;
+      }
 
-        .shadow {
-            box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
-        }
+      .shadow {
+        box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
+      }
 
-        h1 {
-            color: #2f3b52;
-            font-weight: 900;
-            margin: 2.5rem 0 1.5rem;
-        }
+      h1 {
+        color: #2f3b52;
+        font-weight: 900;
+        margin: 2.5rem 0 1.5rem;
+      }
 
-        input:focus {
-            outline: none;
-        }
+      input:focus {
+        outline: none;
+      }
 
-        .inputBox {
-            background: white;
-            height: 50px;
-            line-height: 50px;
-            border-radius: 5px;
-        }
+      .inputBox {
+        background: white;
+        height: 50px;
+        line-height: 50px;
+        border-radius: 5px;
+      }
 
-        .inputBox input {
-            border-style: none;
-            font-size: 0.9rem;
-        }
+      .inputBox input {
+        border-style: none;
+        font-size: 0.9rem;
+      }
 
-        .addContainer {
-            float: right;
-            background: linear-gradient(to right, #6478fb, #8763fb);
-            display: inline-block;
-            width: 3rem;
-            border-radius: 0 5px 5px 0;
-        }
+      .addContainer {
+        float: right;
+        background: linear-gradient(to right, #6478fb, #8763fb);
+        display: inline-block;
+        width: 3rem;
+        border-radius: 0 5px 5px 0;
+      }
 
-        .addBtn {
-            color: white;
-            vertical-align: middle;
-        }
+      .addBtn {
+        color: white;
+        vertical-align: middle;
+      }
 
-        .closeModalBtn {
-            color: #62acde;
-        }
+      .closeModalBtn {
+        color: #62acde;
+      }
 
-        .modal-mask {
-            position: fixed;
-            z-index: 9998;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: table;
-            transition: opacity 0.3s ease;
-        }
+      .modal-mask {
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: table;
+        transition: opacity 0.3s ease;
+      }
 
-        .modal-wrapper {
-            display: table-cell;
-            vertical-align: middle;
-        }
+      .modal-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+      }
 
-        .modal-container {
-            width: 300px;
-            margin: 0px auto;
-            padding: 20px 30px;
-            background-color: #fff;
-            border-radius: 2px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-            transition: all 0.3s ease;
-            font-family: Helvetica, Arial, sans-serif;
-        }
+      .modal-container {
+        width: 300px;
+        margin: 0px auto;
+        padding: 20px 30px;
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+        transition: all 0.3s ease;
+        font-family: Helvetica, Arial, sans-serif;
+      }
 
-        .modal-header h3 {
-            margin-top: 0;
-            color: #62acde;
-        }
+      .modal-header h3 {
+        margin-top: 0;
+        color: #62acde;
+      }
 
-        .modal-body {
-            margin: 20px 0;
-        }
+      .modal-body {
+        margin: 20px 0;
+      }
 
-        .modal-default-button {
-            float: right;
-        }
+      .modal-default-button {
+        float: right;
+      }
 
-        .modal-enter {
-            opacity: 0;
-        }
+      .modal-enter {
+        opacity: 0;
+      }
 
-        .modal-leave-active {
-            opacity: 0;
-        }
+      .modal-leave-active {
+        opacity: 0;
+      }
 
-        .modal-enter .modal-container,
-        .modal-leave-active .modal-container {
-            -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-        }
+      .modal-enter .modal-container,
+      .modal-leave-active .modal-container {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
 
-        ul {
-            list-style-type: none;
-            padding-left: 0px;
-            margin-top: 0;
-            text-align: left;
-        }
+      ul {
+        list-style-type: none;
+        padding-left: 0px;
+        margin-top: 0;
+        text-align: left;
+      }
 
-        li {
-            display: flex;
-            min-height: 50px;
-            height: 50px;
-            line-height: 50px;
-            margin: 0.5rem 0;
-            padding: 0 0.9rem;
-            background: white;
-            border-radius: 5px;
-        }
+      li {
+        display: flex;
+        min-height: 50px;
+        height: 50px;
+        line-height: 50px;
+        margin: 0.5rem 0;
+        padding: 0 0.9rem;
+        background: white;
+        border-radius: 5px;
+      }
 
-        li.checked {
-            background: #BBB;
-            color: #fff;
-            text-decoration: line-through;
-        }
+      li.checked {
+        background: #BBB;
+        color: #fff;
+        text-decoration: line-through;
+      }
 
-        .checkBtn {
-            line-height: 45px;
-            color: #62acde;
-            margin-right: 5px;
-        }
+      .checkBtn {
+        line-height: 45px;
+        color: #62acde;
+        margin-right: 5px;
+      }
 
-        .removeBtn {
-            margin-left: auto;
-            color: #de4343;
-        }
+      .removeBtn {
+        margin-left: auto;
+        color: #de4343;
+      }
 
-        .list-enter-active,
-        .list-leave-active {
-            transition: all 1s;
-        }
+      .list-enter-active,
+      .list-leave-active {
+        transition: all 1s;
+      }
 
-        .list-enter,
-        .list-leave-to {
-            opacity: 0;
-            transform: translateY(30px);
-        }
+      .list-enter,
+      .list-leave-to {
+        opacity: 0;
+        transform: translateY(30px);
+      }
 
-        .clearAllContainer {
-            width: 8.5rem;
-            height: 50px;
-            line-height: 50px;
-            background-color: white;
-            border-radius: 5px;
-            margin: 0 auto;
-        }
+      .clearAllContainer {
+        width: 8.5rem;
+        height: 50px;
+        line-height: 50px;
+        background-color: white;
+        border-radius: 5px;
+        margin: 0 auto;
+      }
 
-        .clearAllBtn {
-            color: #e20303;
-            display: block;
-        }
+      .clearAllBtn {
+        color: #e20303;
+        display: block;
+      }
     </style>
 
-</head>
+  </head>
 
-<body>
+  <body>
     <pre style="text-align:left;">
 
     선 학습 필요 사항:
@@ -245,69 +249,144 @@
 
     <div id="app">
 
-        <!-- TodoHeader -->
-        <header>
-            <h1>TODO it!</h1>
-        </header>
+      <!-- TodoHeader -->
+      <header>
+        <h1>TODO it!</h1>
+      </header>
 
-        <!-- TodoInput -->
-        <div class="inputBox shadow">
-            <input type="text"
-                placeholder="Type what you have to do"
-                v-model.trim:value="newTodoItem"
-                v-on:keyup.enter="addTodo"
-                ref="myfocus" />
-            <span class="addContainer" v-on:click="addTodo">
-                <i class="addBtn fas fa-plus" aria-hidden="true"></i>
-            </span>
+      <!-- TodoInput -->
+      <div class="inputBox shadow">
+        <input type="text"
+          placeholder="Type what you have to do"
+          v-model.trim:value="newTodoItem"
+          v-on:keyup.enter="addTodo"
+          ref="myfocus" />
+        <span class="addContainer"
+          v-on:click="addTodo">
+          <i class="addBtn fas fa-plus"
+            aria-hidden="true"></i>
+        </span>
 
-            <div class="modal-mask"
-                v-on:keyup.esc="$emit('close')"
-                v-if="showModal"
-                v-on:close="showModal = false">
-                <div class="modal-wrapper">
-                    <div class="modal-container">
-                        <div class="modal-header">
-                            <h3 slot="header">경고</h3>
-                        </div>
+        <div class="modal-mask"
+          v-on:keyup.esc="keyupEsc"
+          v-if="showModal"
+          v-on:close="closeModal"
+          tabindex="0">
+          <div class="modal-wrapper">
+            <div class="modal-container">
+              <div class="modal-header">
+                <h3 slot="header">경고</h3>
+              </div>
 
-                        <div class="modal-footer">
-                            <span v-on:click="showModal = false">
-                                할 일을 입력하세요.
-                                <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
+              <div class="modal-footer">
+                <span v-on:click="closeModal">
+                  할 일을 입력하세요.
+                  <i class="closeModalBtn fas fa-times"
+                    aria-hidden="true"></i>
+                </span>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
 
-        <!-- TodoList -->
-        <!-- "checked(todoItem.done)"  <==> "todoItem.done ? 'checked': null "  -->
-        <section>
-            <transition-group name="list" tag="ul">
-                <li v-for="(todoItem, index) in todoItems"
-                    v-bind:key="todoItem.id"
-                    v-bind:class="checked(todoItem.done)"
-                    v-on:click="doneToggle(todoItem.id)">
-                    <i class="checkBtn fas fa-check" aria-hidden="true"></i>
-                    {{ todoItem.todo }}
-                    <span class="removeBtn"
-                          type="button"
-                          v-on:click="removeTodo(todoItem.id)">
-                        <i class="far fa-trash-alt" aria-hidden="true"></i>
-                    </span>
-                </li>
-            </transition-group>
-        </section>
+      <!-- TodoList -->
+      <!-- "checked(todoItem.done)"  <==> "todoItem.done ? 'checked': null "  -->
+      <section>
+        <transition-group name="list"
+          tag="ul">
+          <li v-for="(todoItem, index) in todoItems"
+            v-bind:key="todoItem.id"
+            v-bind:class="checked(todoItem.done)"
+            v-on:click="doneToggle(todoItem.id)"
+            :data-id="todoItem.id">
+            <i class="checkBtn fas fa-check"
+              aria-hidden="true"></i>
+            {{ todoItem.todo }}
+            <span class="removeBtn"
+              type="button"
+              v-on:click="removeTodo(todoItem.id)">
+              <i class="far fa-trash-alt"
+                aria-hidden="true"></i>
+            </span>
+          </li>
+        </transition-group>
+      </section>
 
-        <!-- TodoFooter -->
-        <div class="clearAllContainer">
-            <span class="clearAllBtn" v-on:click="clearAll">Clear All</span>
-        </div>
+      <!-- TodoFooter -->
+      <div class="clearAllContainer">
+        <span class="clearAllBtn"
+          v-on:click="clearAll">Clear All</span>
+      </div>
 
     </div>
 
-</body>
+  </body>
 
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+
+<script>
+  new Vue({
+    /* edtmc^2w */
+    el: '#app',
+    data() {
+      return {
+        /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+        newTodoItem: '',
+        showModal: false,
+        todoItems: [
+          { id: 1, todo: "영화보기", done: false },
+          { id: 2, todo: "주말 산책", done: true },
+          { id: 3, todo: "ES6 학습", done: false },
+          { id: 4, todo: "잠실 야구장", done: false }
+        ],
+      };
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      clearAll() {
+        this.todoItems = [];
+      },
+
+      checked(done) {
+        return done ? 'checked' : null;
+      },
+
+      doneToggle(id) {
+        let todoItem = this.todoItems.find(todoItem => todoItem.id == id);
+        todoItem && (todoItem.done = !todoItem.done);
+      },
+
+      removeTodo(id) {
+        this.todoItems = this.todoItems.filter(todoItem => todoItem.id != id);
+      },
+
+      addTodo() {
+        if (!this.newTodoItem.trim()) {
+          this.showModal = true;
+          return false;
+        }
+        let id = Math.max(...this.todoItems.map(todoItem => todoItem.id), 0) + 1;
+        this.todoItems.push({ id, todo: this.newTodoItem, done: false });
+        this.newTodoItem = '';
+      },
+
+      keyupEsc(e) {
+        e.preventDefault();
+        console.log('keyupEsc', e)
+        this.$emit('close');
+      },
+
+      closeModal(e) {
+        console.log('closeModal', e);
+        this.showModal = false;
+      }
+    },
+  });
+
+</script>

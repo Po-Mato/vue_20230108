@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
     <title>Vue Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
-</head>
+    <link rel="stylesheet"
+      href="../css/reset.css">
+  </head>
 
-<body>
+  <body>
     <br>
-    <img src="./singerarray.png" style="padding-left: 30px;">
+    <img src="./singerarray.png"
+      style="padding-left: 30px;">
     <xmp>
         v-for 지시자를 사용하여 자신이 좋아하는 가수들을 출력하는 테이블을 작성하여 본다.
 
@@ -47,28 +51,113 @@
     </xmp>
     <hr>
 
-    <div id="app" class="col-md-10 offset-md-1">
-        <table id="list" class="table-bordered">
-            <thead>
-                <tr class="bg-warning text-white text-center">
-                    <th>번호</th>
-                    <th>이름</th>
-                    <th>전화번호</th>
-                    <th>주소</th>
-                </tr>
-            </thead>
-            <tbody id="contacts">
-                <tr v-for="(contact, i) in contacts" v-bind:key="i">
-                    <td>{{i+1}}</td>
-                    <td>{{contact.name}}</td>
-                    <td>{{contact.tel}}</td>
-                    <td>{{contact.address}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div id="app"
+      class="col-md-10 offset-md-1">
+      <table id="list"
+        class="table-bordered">
+        <thead>
+          <tr class="bg-warning text-white text-center">
+            <th>번호</th>
+            <th>이름</th>
+            <th>전화번호</th>
+            <th>주소</th>
+            <th>작업</th>
+          </tr>
+        </thead>
+
+        <tbody id="contacts">
+          <tr v-for="(contact, i) in contacts"
+            v-bind:key="i">
+            <td>{{i+1}}</td>
+            <td>
+              <template v-if="contact != contact_mod">{{contact.name}}</template>
+              <input v-else
+                type="text"
+                v-model="contact.name" />
+            </td>
+            <td>
+              <template v-if="contact != contact_mod">{{contact.tel}}</template>
+              <input v-else
+                type="text"
+                v-model="contact.tel" />
+            </td>
+            <td>
+              <template v-if="contact != contact_mod">{{contact.address}}</template>
+              <input v-else
+                type="text"
+                v-model="contact.address" />
+            </td>
+            <td>
+              <button v-on:click="btnModifyClick(contact)">수정</button>
+              <button v-on:click="btnRemoveClick(contact)">삭제</button>
+            </td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td>신규</td>
+            <td><input type="text"
+                v-model="contact_new.name" /></td>
+            <td><input type="text"
+                v-model="contact_new.tel" /></td>
+            <td><input type="text"
+                v-model="contact_new.address" /></td>
+            <td><button v-on:click="btnAddClick">추가</button></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <!-- <div>
+        <label for="">이름</label><input v-model:value="name">
+        <label for="">전화번호</label><input v-model:value="tel">
+        <label for="">주소</label><input v-model:value="address">
+        <button v-on:click="btnAddClick">추가</button>
+      </div> -->
     </div>
-</body>
+  </body>
 
 </html>
 
 
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+
+  new Vue({
+    /* edtmc^2w */
+    el: '#app',
+    data() {
+      return {
+        /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+        contacts: [
+          { name: "설현", tel: "010-3456-8200", address: "서현" },
+          { name: "혜리", tel: "010-3456-8299", address: "서리" },
+        ],
+        contact_new: { name: '', tel: '', address: '' },
+        contact_mod: null,
+      };
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      btnAddClick() {
+        this.contacts.push({ ...this.contact_new });
+        for (let key in this.contact_new) {
+          this.contact_new[key] = '';
+        }
+      },
+
+      btnModifyClick(contact) {
+        this.contact_mod = this.contact_mod != contact ? contact : null;
+        console.log(this.contact_mod)
+      },
+
+      btnRemoveClick(contact) {
+        this.contacts = this.contacts.filter(contact2 => contact2 != contact);
+      },
+    },
+  });
+
+
+</script>
