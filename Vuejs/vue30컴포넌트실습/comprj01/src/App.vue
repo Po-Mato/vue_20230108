@@ -1,10 +1,19 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/vue3103">3103</router-link>
-  </nav>
-  <router-view />
+  <div>
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/todo">Todo</router-link> |
+      <router-link to="/3103">3103</router-link> |
+      <router-link to="/3104">3104</router-link> |
+      <router-link to="/3403">3403</router-link> |
+      <router-link to="/34ex">34ex</router-link> |
+      <router-link to="/3701">3701</router-link>|
+      <router-link to="/image-slider">Image Slider</router-link>|
+      <router-link to="/4301">4301</router-link>
+    </nav>
+    <router-view />
+  </div>
 </template>
 
 <style>

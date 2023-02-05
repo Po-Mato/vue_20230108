@@ -1,17 +1,8 @@
-<style scoped>
-span {
-  border: 1px dashed blue;
-  background-color: lightgray;
-  padding: 5px;
-}
-</style>
+<style scoped></style>
 
 <template>
   <div>
-    파일 컴포넌트가 등록되었습니다!
-    <span onclick="lclick">
-      {{ localmsg }}
-    </span>
+    <button v-on:click="showLog">show</button>
   </div>
 </template>
 
@@ -21,9 +12,16 @@ span {
 
 export default {
   /* pdtmc^2w */
-  props: ['localmsg'],
+  props: [],
   data() {
+    /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     return {};
+  },
+  //template: ``,
+  methods: {
+    showLog() {
+      this.$emit('show-log', 'abc', 123);
+    },
   },
 };
 </script>
