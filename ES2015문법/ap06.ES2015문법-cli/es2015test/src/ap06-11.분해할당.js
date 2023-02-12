@@ -38,3 +38,17 @@ const model1 = car.model1;
 // 객체 분해 할당은 객체의 프로퍼티명을 이용해서 매핑한다.
 const { type, color, model, gear } = car;
 console.log(type, color, model, gear);
+
+const { type: type2, color: color2, model: model2, gear: gear2 } = car;
+console.log(type2, color2, model2, gear2);
+
+const func1 = ({ type, color }) => {
+  console.log(type, color);
+};
+func1(car);
+
+const func2 = (car) => {
+  const { type, color } = car;
+  console.log(type, color);
+};
+func2(car);

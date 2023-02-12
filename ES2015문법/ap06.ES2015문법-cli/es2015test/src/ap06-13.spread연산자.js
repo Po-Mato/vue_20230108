@@ -34,3 +34,45 @@ console.log(countries);
 // seast와 west를 결합하여 countries1 배열을 만드시오.(spread 연산자를 사용하여)
 const countries1 = [...east, ...west];
 console.log(countries1);
+
+const car1 = {
+  type: 't1',
+  color: 'S1',
+  model: 2017,
+};
+const car2 = {
+  type: 't2',
+  color: 'S2',
+  model: 2019,
+};
+
+const { type } = car1;
+console.log(type); // t1
+
+const func1 = ({ type }) => {
+  console.log(type);
+};
+const newcar = { ...car1, ...car2 };
+func1(newcar);
+func1({ ...car1, ...car2 });
+
+const morning = {
+  breakfast: '미역국',
+  lunch: '삼치구이',
+};
+
+const dinner = '스테이크';
+
+const meals = {
+  ...morning,
+  dinner,
+};
+
+console.log(meals);
+
+function childComponent(...props) {
+  console.log(props);
+}
+
+const message = 'passed from Parent Component';
+const value = childComponent(...message);
