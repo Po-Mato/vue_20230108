@@ -64,3 +64,78 @@
     </div>
   </body>
 </html>
+
+
+<script src="https://unpkg.com/@babel/standalone/babel.js"
+  crossorigin="anonymous">
+    /* 자바스크립트로 컴파일러. ES6->ES5, JSX->ES5 */
+  </script>
+<script src="http://unpkg.com/react@17/umd/react.development.js"
+  crossorigin="anonymous">
+    /* import React, { Component, PureComponent } from 'react' */
+  </script>
+<script src="http://unpkg.com/react-dom@17/umd/react-dom.development.js"
+  crossorigin="anonymous">
+    /* import ReactDOM from 'react-dom' */
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.js"
+  crossorigin="anonymous">
+  </script>
+<script type="text/babel">
+
+  const { useState, useEffect, useRef, useCallback, useMemo, useReducer, Fragment } = React;
+
+  // id="app" 인 태그 에 컴포넌트를 화면에 붙이시오
+  // ReactDOM.render( 인자1, 인자2 )
+  ReactDOM.render(<Parent />, document.getElementById('app'));
+
+  // 단축키 rfc
+  function Parent({ ...props }) {
+    const [count, setCount] = useState(0);
+    const callbackChild = useCallback((add, bShift) => {
+      setCount(count + (bShift ? 10 : 1));
+    }, [count]);
+    return (
+      <div id="parent">
+        I am a parent
+        <Child count={count} callbackChild={callbackChild}></Child>
+      </div>
+    )
+  }
+
+  Parent.propTypes = {
+    // props의 프로퍼티 타입 설정. https://ko.reactjs.org/docs/typechecking-with-proptypes.html
+    // 인자명: PropTypes.func.isRequired,
+    // 인자명: PropTypes.arrayOf(PropTypes.object),
+  };
+  Parent.defaultProps = {
+    // props의 디폴트 값 설정. https://ko.reactjs.org/docs/typechecking-with-proptypes.html
+    // 인자명: () => {},
+    // 인자명: [],
+  };
+
+  function Child({ count, callbackChild }) {
+    function handlerParentToggleFromChild(e) {
+      callbackChild(10, e.shiftKey);
+    }
+    return (
+      <div id="child">
+        {count}
+        <br />
+        I am a child
+        <br />
+        <button onClick={handlerParentToggleFromChild}>toggle</button>
+      </div>
+    )
+  }
+
+  Child.propTypes = {
+    count: PropTypes.number.isRequired,
+    callbackChild: PropTypes.func.isRequired,
+  };
+  Child.defaultProps = {
+    count: 0,
+    callbackChild: () => { },
+  };
+
+</script>
