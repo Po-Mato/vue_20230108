@@ -48,3 +48,5 @@ function CompStyle({ ...props }) {
     </StyledCompStyle>
   );
 }
+
+export default CompStyle;

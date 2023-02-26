@@ -1,10 +1,14 @@
-import CompStyle from './src/containers/styled/CompStyle';
 import './App.css';
+import CompStyle from './containers/styled/CompStyle';
+import CrudContainer from './components/crud/CrudContainer';
+import PageHome from './pages/PageHome';
 
 function App() {
   return (
     <div>
-      <CompStyle></CompStyle>
+      {/* <CompStyle></CompStyle> */}
+      {/* <CrudContainer></CrudContainer> */}
+      <PageHome></PageHome>
     </div>
   );
 }
